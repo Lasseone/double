@@ -4,45 +4,30 @@
 #include "operation.h"
 
 #include <vector>
-#include <ranges>
 #include <iterator>
 
 namespace autodiff {
 
-template <typename T>
-concept UNIVARIATE_FUNCTION = 
-  std::ranges::forward_range<T> &&
-  OPERATION<std::ranges::range_value_t<T>>;
-
-class OperationsLoader {
-private:
-  std::vector<Operation*> _operations; // this is a pain
-  int _n_unaries;
-  int _n_binaries;
-
-public:
-  void push(Operation*)
-  int size()
-  int get_n_unaries()
-  int get_n_binaries()
-};
 
 class UnivariateFunction {
+/* 
+  stores data in slow _operations until begin() is called
+  at which point data is stored in a faster format and cached
+*/
+
 private:
-  OperationsLoader _operations;
+  std::vector<Operation*> _operations;
+  int _n_unaries = 0;
+  int _n_binaries = 0;
   
-  std::vector<bool> _discriminants;
-  std::vector<UnaryOperation> _unaries;
-  std::vector<BinaryOperation> _binaries;
+  std::vector<bool> _discriminants_cache; // unary: false, binary: true
+  std::vector<UnaryOperation> _unaries_cache;
+  std::vector<BinaryOperation> _binaries_cache;
 
   bool _is_cache_updated = false;
-  void _update_cache()
+  void _update_cache();
 
 public:
-  void push(Operation*)
-  iterator begin()
-  iterator end()
-
   class iterator {
   private:
     std::vector<bool>::iterator _discriminant;
@@ -58,11 +43,15 @@ public:
           _unary_operation(unary_operation),
           _binary_operation(binary_operation) {}
 
-    iterator operator++()
-    Operation operator*()
-    bool operator==(const iterator&)
+    const iterator& operator++();
+    const Operation& operator*();
+    bool operator==(const iterator&);
+    bool operator!=(const iterator&);
   };
-  
+
+  void push(Operation*);
+  iterator begin();
+  iterator end();
 };
 
 }
