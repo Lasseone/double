@@ -2,18 +2,28 @@
 
 #include<cmath>
 
-double autodiff::Sin::call(double x) const {
+using namespace autodiff;
+
+bool UnaryOperation::is_binary() const {
+  return false;
+}
+
+bool BinaryOperation::is_binary() const {
+  return true;
+}
+
+double Sin::call(double x) const {
   return std::sin(x);
 }
 
-double autodiff::Sin::grad(double x) const {
+double Sin::grad(double x) const {
   return std::cos(x);
 }
 
-double autodiff::Addition::call(double x) const {
+double Addition::call(double x) const {
   return x + _val;
 }
 
-double autodiff::Addition::grad(double x) const {
+double Addition::grad(double x) const {
   return 1;
 }
