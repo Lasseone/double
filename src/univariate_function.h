@@ -5,53 +5,56 @@
 
 #include <vector>
 #include <iterator>
+#include <memory>
 
 namespace autodiff {
 
 
 class UnivariateFunction {
-/* 
-  stores data in slow _operations until begin() is called
-  at which point data is stored in a faster format and cached
-*/
-
-private:
-  std::vector<Operation*> _operations;
-  int _n_unaries = 0;
-  int _n_binaries = 0;
+/*
+  _discriminants determines the ordering of the operations.
+  For example, if _discriminants stores {true, true, false, true, false}
+  then the order of operations is
+  {_binaries[0], _binaries[1], _unaries[0], _binaries[2], _unaries[1]}
   
-  std::vector<bool> _discriminants_cache; // unary: false, binary: true
-  std::vector<UnaryOperation> _unaries_cache;
-  std::vector<BinaryOperation> _binaries_cache;
+  UnaryVar and BinaryVar have enormously different sizes, so they
+  are separated for cache efficiency
+*/
+private:
+  std::vector<bool> _discriminants; // false: Unary, true: Binary
+  std::vector<operation::UnaryVar> _unaries;
+  std::vector<operation::BinaryVar> _binaries;
 
-  bool _is_cache_updated = false;
-  void _update_cache();
-
-public:
   class iterator {
   private:
     std::vector<bool>::iterator _discriminant;
-    std::vector<UnaryOperation>::iterator _unary_operation;
-    std::vector<BinaryOperation>::iterator _binary_operation;
+    std::vector<operation::UnaryVar>::iterator _unary;
+    std::vector<operation::BinaryVar>::iterator _binary;
 
   public:
     iterator(
         std::vector<bool>::iterator discriminant,
-        std::vector<UnaryOperation>::iterator unary_operation, 
-        std::vector<BinaryOperation>::iterator binary_operation) :
+        std::vector<operation::UnaryVar>::iterator unary, 
+        std::vector<operation::BinaryVar>::iterator binary) :
           _discriminant(discriminant),
-          _unary_operation(unary_operation),
-          _binary_operation(binary_operation) {}
+          _unary(unary),
+          _binary(binary) {};
 
     const iterator& operator++();
-    const Operation& operator*();
+    const operation::Operation& operator*();
     bool operator==(const iterator&);
     bool operator!=(const iterator&);
   };
 
-  void push(Operation*);
   iterator begin();
   iterator end();
+
+public:
+  void push(const operation::UnaryVar&);
+  void push(const operation::BinaryVar&);
+  
+  double val(double);
+  double grad(double);
 };
 
 }
