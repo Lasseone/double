@@ -25,32 +25,32 @@ private:
   std::vector<operation::BinaryVar> _binaries;
 
 public:
-  class iterator {
+  class const_iterator {
   private:
-    std::vector<bool>::iterator _discriminant;
-    std::vector<operation::UnaryVar>::iterator _unary;
-    std::vector<operation::BinaryVar>::iterator _binary;
+    std::vector<bool>::const_iterator _discriminant;
+    std::vector<operation::UnaryVar>::const_iterator _unary;
+    std::vector<operation::BinaryVar>::const_iterator _binary;
 
   public:
-    iterator(
-        std::vector<bool>::iterator discriminant,
-        std::vector<operation::UnaryVar>::iterator unary, 
-        std::vector<operation::BinaryVar>::iterator binary) :
+    const_iterator(
+        std::vector<bool>::const_iterator discriminant,
+        std::vector<operation::UnaryVar>::const_iterator unary, 
+        std::vector<operation::BinaryVar>::const_iterator binary) :
           _discriminant(discriminant),
           _unary(unary),
           _binary(binary) {};
 
-    const iterator& operator++();
+    const const_iterator& operator++();
     const operation::Operation& operator*() const;
-    bool operator==(const iterator&) const;
-    bool operator!=(const iterator&) const;
+    bool operator==(const const_iterator&) const;
+    bool operator!=(const const_iterator&) const;
   };
 
   void push(const operation::UnaryVar&);
   void push(const operation::BinaryVar&);
 
-  iterator begin();
-  iterator end();
+  const_iterator begin() const;
+  const_iterator end() const;
 };
 
 

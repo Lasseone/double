@@ -14,16 +14,16 @@ void FastContainer::push(const operation::BinaryVar& x){
   _binaries.push_back(x);
 }
 
-FastContainer::iterator FastContainer::begin() {
-  return iterator(_discriminants.begin(), _unaries.begin(), _binaries.begin());
+FastContainer::const_iterator FastContainer::begin() const {
+  return const_iterator(_discriminants.cbegin(), _unaries.cbegin(), _binaries.cbegin());
 }
 
-FastContainer::iterator FastContainer::end(){
-  return iterator(_discriminants.end(), _unaries.end(), _binaries.end());
+FastContainer::const_iterator FastContainer::end() const {
+  return const_iterator(_discriminants.cend(), _unaries.cend(), _binaries.cend());
 }
 
-const FastContainer::iterator& 
-FastContainer::iterator::operator++(){
+const FastContainer::const_iterator& 
+FastContainer::const_iterator::operator++(){
   if(*_discriminant){
     _binary++;
   } else {
@@ -35,7 +35,7 @@ FastContainer::iterator::operator++(){
 }
 
 const operation::Operation& 
-FastContainer::iterator::operator*() const {
+FastContainer::const_iterator::operator*() const {
   if(*_discriminant){
     return reinterpret_cast<const operation::Binary&>(*_binary);
   } else {
@@ -43,11 +43,11 @@ FastContainer::iterator::operator*() const {
   }
 }
 
-bool FastContainer::iterator::operator==(const iterator& other) const {
+bool FastContainer::const_iterator::operator==(const const_iterator& other) const {
   return _discriminant == other._discriminant;
 }
 
-bool FastContainer::iterator::operator!=(const iterator& other) const {
+bool FastContainer::const_iterator::operator!=(const const_iterator& other) const {
   return !(*this == other);
 }
 

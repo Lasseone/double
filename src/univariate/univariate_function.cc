@@ -15,8 +15,8 @@ void Function<T>::push(const operation::BinaryVar& operation){
 }
 
 template <typename T>
-double Function<T>::call(double x) {
-  for(auto& operation: _container){
+double Function<T>::call(double x) const {
+  for(const auto& operation: _container){
     x = operation.call(x);
   }
   
@@ -24,9 +24,9 @@ double Function<T>::call(double x) {
 }
 
 template <typename T>
-double Function<T>::grad(double x) {
+double Function<T>::grad(double x) const {
   double dx = 1;
-  for(auto& operation: _container){
+  for(const auto& operation: _container){
     dx *= operation.grad(x);
     x = operation.call(x);
   }

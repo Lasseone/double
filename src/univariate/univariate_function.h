@@ -16,8 +16,8 @@ public:
   void push(const operation::UnaryVar&);
   void push(const operation::BinaryVar&);
   
-  double call(double);
-  double grad(double);
+  double call(double) const;
+  double grad(double) const;
 };
 
 }}
