@@ -1,0 +1,1 @@
+/usr/bin/c++     CMakeFiles/run.dir/src/run.cc.o  -o run  src/operation/liboperation.a src/univariate/libunivariate_function.a 

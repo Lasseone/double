@@ -1,0 +1,34 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/lasse/double/src/operation/operation.h
+variant
+-
+
+/home/lasse/double/src/run.cc
+iostream
+-
+univariate/univariate_function.h
+/home/lasse/double/src/univariate/univariate_function.h
+operation/operation.h
+/home/lasse/double/src/operation/operation.h
+
+/home/lasse/double/src/univariate/univariate_container.h
+operation/operation.h
+-
+vector
+-
+iterator
+-
+
+/home/lasse/double/src/univariate/univariate_function.h
+operation/operation.h
+/home/lasse/double/src/univariate/operation/operation.h
+univariate_container.h
+/home/lasse/double/src/univariate/univariate_container.h
+

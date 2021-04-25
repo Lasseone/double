@@ -1,16 +1,15 @@
-#ifndef AUTODIFF_UNIVARIATE_FUNCTION_H_
-#define AUTODIFF_UNIVARIATE_FUNCTION_H_
+#ifndef AUTODIFF_UNIVARIATE_CONTAINER_H_
+#define AUTODIFF_UNIVARIATE_CONTAINER_H_
 
-#include "operation.h"
+#include <operation/operation.h>
 
 #include <vector>
 #include <iterator>
-#include <memory>
 
 namespace autodiff {
+namespace univariate {
 
-
-class UnivariateFunction {
+class FastContainer {
 /*
   _discriminants determines the ordering of the operations.
   For example, if _discriminants stores {true, true, false, true, false}
@@ -25,6 +24,7 @@ private:
   std::vector<operation::UnaryVar> _unaries;
   std::vector<operation::BinaryVar> _binaries;
 
+public:
   class iterator {
   private:
     std::vector<bool>::iterator _discriminant;
@@ -41,22 +41,19 @@ private:
           _binary(binary) {};
 
     const iterator& operator++();
-    const operation::Operation& operator*();
-    bool operator==(const iterator&);
-    bool operator!=(const iterator&);
+    const operation::Operation& operator*() const;
+    bool operator==(const iterator&) const;
+    bool operator!=(const iterator&) const;
   };
+
+  void push(const operation::UnaryVar&);
+  void push(const operation::BinaryVar&);
 
   iterator begin();
   iterator end();
-
-public:
-  void push(const operation::UnaryVar&);
-  void push(const operation::BinaryVar&);
-  
-  double val(double);
-  double grad(double);
 };
 
-}
+
+}}
 
 #endif

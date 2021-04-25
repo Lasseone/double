@@ -1,0 +1,2 @@
+/usr/bin/ar qc libunivariate_function.a  CMakeFiles/univariate_function.dir/univariate_function.cc.o CMakeFiles/univariate_function.dir/univariate_container.cc.o
+/usr/bin/ranlib libunivariate_function.a
