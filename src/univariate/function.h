@@ -2,7 +2,7 @@
 #define AUTODIFF_UNIVARIATE_FUNCTION_H_
 
 #include "operation/operation.h"
-#include "univariate_container.h"
+#include "fast_container.h"
 
 namespace autodiff {
 namespace univariate {

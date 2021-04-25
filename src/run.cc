@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "univariate/univariate_function.h"
+#include "univariate/function.h"
 #include "operation/operation.h"
 
 int main(){

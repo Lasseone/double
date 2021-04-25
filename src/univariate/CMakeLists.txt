@@ -1,7 +1,7 @@
 add_library(
   univariate_function
-  univariate_function.cc
-  univariate_container.cc
+  function.cc
+  fast_container.cc
 )
 
 set_property(TARGET univariate_function PROPERTY CXX_STANDARD 20)

@@ -1,7 +1,7 @@
-#ifndef AUTODIFF_UNIVARIATE_CONTAINER_H_
-#define AUTODIFF_UNIVARIATE_CONTAINER_H_
+#ifndef AUTODIFF_CONTAINER_H_
+#define AUTODIFF_CONTAINER_H_
 
-#include <operation/operation.h>
+#include "operation/operation.h"
 
 #include <vector>
 #include <iterator>
@@ -52,7 +52,6 @@ public:
   const_iterator begin() const;
   const_iterator end() const;
 };
-
 
 }}
 
