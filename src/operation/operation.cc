@@ -4,14 +4,6 @@
 
 using namespace autodiff::operation;
 
-bool Unary::is_binary() const {
-  return false;
-}
-
-bool Binary::is_binary() const {
-  return true;
-}
-
 double Sin::call(double x) const {
   return std::sin(x);
 }

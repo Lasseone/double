@@ -9,13 +9,9 @@ class Operation {
 public:
   virtual double call(double) const = 0;
   virtual double grad(double) const = 0;
-  virtual bool is_binary() const = 0; // needed for runtime type checking
 };
 
-class Unary : public Operation {
-public:
-  virtual bool is_binary() const;
-};
+class Unary : public Operation {};
 
 class Binary : public Operation {
 protected:
@@ -23,7 +19,6 @@ protected:
 
 public:
   Binary(double val) : _val(val) {};
-  virtual bool is_binary() const;
 };
 
 
