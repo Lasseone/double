@@ -1,7 +1,7 @@
 #include <iostream>
 
-#include "univariate/function.h"
-#include "operation/operation.h"
+#include <univariate/function.h>
+#include <operation/operation.h>
 
 int main(){
   int x = 0;

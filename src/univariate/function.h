@@ -1,8 +1,8 @@
 #ifndef AUTODIFF_UNIVARIATE_FUNCTION_H_
 #define AUTODIFF_UNIVARIATE_FUNCTION_H_
 
-#include "operation/operation.h"
 #include "fast_container.h"
+#include <operation/operation.h>
 
 namespace autodiff {
 namespace univariate {
