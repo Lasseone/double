@@ -24,11 +24,11 @@ FastContainer::const_iterator FastContainer::end() const {
 const FastContainer::const_iterator& 
 FastContainer::const_iterator::operator++(){
   if(*_discriminant){
-    _binary++;
+    ++_binary;
   } else {
-    _unary++;
+    ++_unary;
   }
-  _discriminant++;
+  ++_discriminant;
   
   return *this;
 }
