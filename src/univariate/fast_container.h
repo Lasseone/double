@@ -6,8 +6,7 @@
 #include <vector>
 #include <iterator>
 
-namespace autodiff {
-namespace univariate {
+namespace autodiff::univariate {
 
 class FastContainer {
 /*
@@ -53,6 +52,6 @@ public:
   const_iterator end() const;
 };
 
-}}
+}
 
 #endif

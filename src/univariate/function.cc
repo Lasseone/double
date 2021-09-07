@@ -1,8 +1,7 @@
 #include "function.h"
 #include <operation/operation.h>
 
-namespace autodiff {
-namespace univariate {
+namespace autodiff::univariate {
 
 template <typename T>
 void Function<T>::push(const operation::UnaryVar& operation){
@@ -36,4 +35,4 @@ double Function<T>::grad(double x) const {
 
 template class Function<FastContainer>;
 
-}}
+}

@@ -4,8 +4,7 @@
 #include "fast_container.h"
 #include <operation/operation.h>
 
-namespace autodiff {
-namespace univariate {
+namespace autodiff::univariate {
 
 template <typename Container = FastContainer>
 class Function {
@@ -20,6 +19,6 @@ public:
   double grad(double) const;
 };
 
-}}
+}
 
 #endif

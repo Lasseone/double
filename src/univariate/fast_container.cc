@@ -1,8 +1,7 @@
 #include "fast_container.h"
 #include <operation/operation.h>
 
-namespace autodiff {
-namespace univariate {
+namespace autodiff::univariate {
 
 void FastContainer::push(const operation::UnaryVar& x){
   _discriminants.push_back(false);
@@ -51,4 +50,4 @@ bool FastContainer::const_iterator::operator!=(const const_iterator& other) cons
   return !(*this == other);
 }
 
-}}
+}
