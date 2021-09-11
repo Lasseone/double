@@ -4,34 +4,34 @@
 
 using namespace autodiff::operation;
 
-double Sin::call(double x) const {
+inline double Sin::call(double x) const {
   return std::sin(x);
 }
 
-double Sin::grad(double x) const {
+inline double Sin::grad(double x) const {
   return std::cos(x);
 }
 
-double Cos::call(double x) const {
+inline double Cos::call(double x) const {
   return std::cos(x);
 }
 
-double Cos::grad(double x) const {
+inline double Cos::grad(double x) const {
   return -std::sin(x);
 }
 
-double Addition::call(double x) const {
+inline double Addition::call(double x) const {
   return x + _val;
 }
 
-double Addition::grad(double x) const {
+inline double Addition::grad(double x) const {
   return 1;
 }
 
-double Subtraction::call(double x) const {
+inline double Subtraction::call(double x) const {
   return x - _val;
 }
 
-double Subtraction::grad(double x) const {
+inline double Subtraction::grad(double x) const {
   return 1;
 }
