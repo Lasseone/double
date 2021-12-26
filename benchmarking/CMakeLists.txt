@@ -1,4 +1,4 @@
-project(CPPDesignPatternsforLowLatencyTrading)
+project(auto_diff)
 
 set(BENCHMARK_ENABLE_TESTING OFF)
 add_subdirectory(lib/benchmark)
