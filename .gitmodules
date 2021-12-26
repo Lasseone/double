@@ -1,3 +1,6 @@
 [submodule "benchmarking/benchmark"]
 	path = benchmarking/benchmark
 	url = https://github.com/google/benchmark.git
+[submodule "benchmarking/lib/benchmark"]
+	path = benchmarking/lib/benchmark
+	url = https://github.com/google/benchmark.git
